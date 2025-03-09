@@ -14,9 +14,10 @@ Inide the src directory replace the KeyboardBLE.h and KeyboardBLE.cpp file with 
 Note: This keyboard uses two pi pico's of which one is a pico w and the other one is a pico,
 both the picos communicate with each other via uart0.
 
-After making the connections as per the connection diagram provided upload the code to the respective pico.
+After making the connections as per the connection diagram provided upload the code to the respective pico's.
 I have also provided the STL files for 3d printing the case.
-
+You can also refer to my previous instructable on the same topic for a more base level understanding:
+https://www.instructables.com/Wireless-Bluetooth-Keyboard-Using-Raspberry-Pi-Pic/
 
 
 
