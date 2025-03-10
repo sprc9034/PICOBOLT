@@ -42,18 +42,6 @@ void setup(){
   Keyboard.begin();
   delay(500);
 
-  if(digitalRead(modekey)==HIGH)
-  {
-
-    modestate=1;
-
-  }
-  
-  else
-  {
-      modestate=0;
-  }
-
 }
 
 
@@ -88,108 +76,37 @@ void loop() {
     if (Serial1.available() >0) {
       char c = Serial1.read();
 
-      if(c=='1')
-      {
-        if(modestate==HIGH)
-        {
-        KeyboardBLE.pressm(VOLUME_UP);
-        KeyboardBLE.releasem();
-        }
 
-         else
-         {
+        switch(c){
+            case 1:
+                KeyboardBLE.pressm(VOLUME_UP);
+                KeyboardBLE.releasem();
+                break();
 
-          Keyboard.writeRaw(0x80);
-          
-         }
 
-        }
+            case 2:
+                KeyboardBLE.pressm(VOLUME_DOWN);
+                KeyboardBLE.releasem();
+                break();
 
-        if(c=='2')
-       {
-        if(modestate==1)
-        {
-        KeyboardBLE.pressm(VOLUME_DOWN);
-        KeyboardBLE.releasem();
-        }
+            case 3:
+                  KeyboardBLE.pressm(MEDIA_NEXT);
+                  KeyboardBLE.releasem();
+                  break();
 
-         else
-         {
+            case 4:
+                 KeyboardBLE.pressm(MEDIA_PREV);
+                 KeyboardBLE.releasem();
+                break();
 
-          Keyboard.writeRaw(0x81);
-
-         }
-
-        }
-
-        if(c=='3')
-        {
-          if(modestate==1)
-        {
-        KeyboardBLE.pressm(MEDIA_NEXT);
-        KeyboardBLE.releasem();
-        }
-
-         else
-         {
-
-          Keyboard.writeRaw(0xeb);
-
-         }
-
-        }
-
-        if(c=='4')
-        {
-          if(modestate==1)
-        {
-        KeyboardBLE.pressm(MEDIA_PREV);
-        KeyboardBLE.releasem();
-        }
-
-        else
-         {
-
-          Keyboard.writeRaw(0xea);
-
-         }
-
-        }
-
-        if(c=='5')
-        {
-          if(modestate==1)
-        {
-        KeyboardBLE.pressm(MEDIA_PLAY_PAUSE);
-        KeyboardBLE.releasem();
-        }
-
-        else
-         {
-
-          Keyboard.writeRaw(0xe8);
-
-         }
-
+            case 5:
+                 KeyboardBLE.pressm(MEDIA_PLAY_PAUSE);
+                 KeyboardBLE.releasem();
+                 break();
         }
 
         
-    }
-}
 
- if(digitalRead(modekey)==HIGH && modestate!=1)
-  {
-
-    modestate=1;
-
-  }
-
-   if(digitalRead(modekey)==LOW && modestate!=0)
-  {
-
-    modestate=0;
-
-  }
 
   }
 
@@ -206,32 +123,18 @@ void keyPressed(int row, int col){
 
     if(layout[row][col]==KEY_F11)
     {
-      if(modestate==1)
-        {
+    
       KeyboardBLE.pressm(VOLUME_MUTE);
       KeyboardBLE.releasem();
-        }
-
-        else
-        {
-          Keyboard.writeRaw(0x7F);
-
-        }
-      
-      }
+    
+       }
 
      
         else
         {
-         if(modestate==1)
-        {
           KeyboardBLE.press(layout[row][col]);
         }
 
-        else
-        {
-         Keyboard.press(layout[row][col]);
-        }
       }
    }
  
