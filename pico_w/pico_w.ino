@@ -110,8 +110,8 @@ void loop() {
 
   }
 
-
-
+  }
+}
 
 
 
@@ -136,7 +136,6 @@ void keyPressed(int row, int col){
         }
 
       }
-   }
  
   keyDown[row][col]++;
 }
@@ -150,4 +149,3 @@ void resetKey(int row, int col){ //resetting the variables after key is released
   KeyboardBLE.release(layout[row][col]);
   Keyboard.release(layout[row][col]);
 }
-
